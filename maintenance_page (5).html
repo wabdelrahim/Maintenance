@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع تحت الصيانة - ثانوية سعيدي خلف الله</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Poppins:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            direction: rtl;
+            background: linear-gradient(135deg, #800020, #C41E3A, #DC143C);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 90%;
+            margin: 20px;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .language-switcher button {
+            background-color: transparent;
+            border: 1px solid #800020;
+            color: #800020;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-switcher button.active {
+            background-color: #800020;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #800020;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #C41E3A;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #444;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            transition: all 0.5s ease;
+        }
+
+        .countdown-item {
+            margin: 0 1rem;
+            background-color: #800020;
+            color: white;
+            border-radius: 10px;
+            padding: 1rem;
+            min-width: 100px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-item .number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .countdown-item .label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .school-logo {
+            width: 150px;
+            height: 150px;
+            background-color: #eee;
+            border-radius: 50%;
+            margin: 1rem auto 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            transition: transform 0.5s ease;
+        }
+        
+        .school-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .school-logo img {
+            max-width: 150%;
+            max-height: 150%;
+        }
+
+
+        /* Language specific styles */
+        #ar-content, #en-content, #ar-message, #en-message {
+            transition: opacity 0.5s ease;
+        }
+        
+        #ar-content, #ar-message {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        #en-content, #en-message {
+            font-family: 'Poppins', sans-serif;
+            direction: ltr;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .countdown-item {
+                margin: 0.5rem;
+                min-width: 80px;
+            }
+            
+            .language-switcher {
+                position: relative;
+                top: 0;
+                left: 0;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .countdown-item {
+                margin: 0.3rem;
+                min-width: 70px;
+                padding: 0.8rem;
+            }
+            
+            .countdown-item .number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-switcher">
+            <button id="ar-btn" class="active">العربية</button>
+            <button id="en-btn">English</button>
+        </div>
+        
+        <div class="school-logo">
+            <img src="thanawiya.jpg" alt="شعار ثانوية سعيدي خلف الله">
+        </div>
+        
+        <div id="ar-content">
+            <h1>موقع ثانوية سعيدي خلف الله</h1>
+            <h2>الموقع تحت الصيانة</h2>
+            
+            <p>نعتذر عن عدم توفر الموقع حاليًا. نحن نعمل على تحسين خدماتنا لتقديم تجربة أفضل لكم. سيعود الموقع للعمل قريبًا.</p>
+        </div>
+        
+        <div id="en-content" style="display: none;">
+            <h1>Saidi Khalaf Allah High School</h1>
+            <h2>Website Under Maintenance</h2>
+            
+            <p>We apologize for the unavailability of the website at this time. We are working to improve our services to provide you with a better experience. The website will be back online soon.</p>
+        </div>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="number" id="days">00</div>
+                <div class="label" id="days-label">أيام</div>
+            </div>
+            <div class="countdown-item">
+                <div class="number" id="hours">00</div>
+                <div class="label" id="hours-label">ساعات</div>
+            </div>
+            <div class="countdown-item">
+                <div class="number" id="minutes">00</div>
+                <div class="label" id="minutes-label">دقائق</div>
+            </div>
+            <div class="countdown-item">
+                <div class="number" id="seconds">00</div>
+                <div class="label" id="seconds-label">ثواني</div>
+            </div>
+        </div>
+        
+        <div id="ar-message">
+            <p>نقدر صبركم وتفهمكم. سنعود قريبًا بمزيد من الخدمات والمزايا!</p>
+        </div>
+        
+        <div id="en-message" style="display: none;">
+            <p>We appreciate your patience and understanding. We will be back soon with more services and features!</p>
+        </div>
+    </div>
+
+    <script>
+        // تاريخ انتهاء الصيانة - تم تحديده لـ 110 يوم
+        const maintenanceEndDate = new Date();
+        maintenanceEndDate.setDate(maintenanceEndDate.getDate() + 110); // بعد 110 يوم من الآن
+        
+        // تخزين الوقت المتبقي في localStorage
+        if (!localStorage.getItem('maintenanceEndTime')) {
+            localStorage.setItem('maintenanceEndTime', maintenanceEndDate.getTime());
+        }
+        
+        // استخدام الوقت المخزن بدلاً من إعادة حسابه في كل مرة
+        const endTime = parseInt(localStorage.getItem('maintenanceEndTime'));
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = endTime - now;
+            
+            // حساب الوقت المتبقي
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // عرض الوقت المتبقي
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+            
+            // في حالة انتهاء العد التنازلي
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+            }
+        }
+        
+        // تبديل اللغة
+        document.addEventListener('DOMContentLoaded', function() {
+            const arBtn = document.getElementById('ar-btn');
+            const enBtn = document.getElementById('en-btn');
+            const arContent = document.getElementById('ar-content');
+            const enContent = document.getElementById('en-content');
+            const arMessage = document.getElementById('ar-message');
+            const enMessage = document.getElementById('en-message');
+            const daysLabel = document.getElementById('days-label');
+            const hoursLabel = document.getElementById('hours-label');
+            const minutesLabel = document.getElementById('minutes-label');
+            const secondsLabel = document.getElementById('seconds-label');
+            
+            arBtn.addEventListener('click', function() {
+                // تغيير المحتوى
+                arContent.style.display = 'block';
+                enContent.style.display = 'none';
+                arMessage.style.display = 'block';
+                enMessage.style.display = 'none';
+                document.body.style.direction = 'rtl';
+                
+                // تغيير تسميات العد التنازلي
+                daysLabel.innerText = 'أيام';
+                hoursLabel.innerText = 'ساعات';
+                minutesLabel.innerText = 'دقائق';
+                secondsLabel.innerText = 'ثواني';
+                
+                // تغيير حالة الأزرار
+                arBtn.classList.add('active');
+                enBtn.classList.remove('active');
+            });
+            
+            enBtn.addEventListener('click', function() {
+                // تغيير المحتوى
+                arContent.style.display = 'none';
+                enContent.style.display = 'block';
+                arMessage.style.display = 'none';
+                enMessage.style.display = 'block';
+                document.body.style.direction = 'ltr';
+                
+                // تغيير تسميات العد التنازلي
+                daysLabel.innerText = 'Days';
+                hoursLabel.innerText = 'Hours';
+                minutesLabel.innerText = 'Minutes';
+                secondsLabel.innerText = 'Seconds';
+                
+                // تغيير حالة الأزرار
+                arBtn.classList.remove('active');
+                enBtn.classList.add('active');
+            });
+        });
+        
+        // تحديث العد التنازلي كل ثانية
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
